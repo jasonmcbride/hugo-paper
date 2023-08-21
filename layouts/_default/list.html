@@ -43,7 +43,15 @@
   {{ end }}
 </div>
 {{ end }}<!---->
-
+<link href="/_pagefind/pagefind-ui.css" rel="stylesheet">
+<script src="/_pagefind/pagefind-ui.js" type="text/javascript"></script>
+<div id="search"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#search" });
+    });
+</script>
+<br>
 {{ end }}
 
 <section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
@@ -54,10 +62,23 @@
   >
   {{ end }}
   <h2 class="!my-0 pb-1 font-bold !leading-none">{{ .Title }}</h2>
+  <span>{{ .Summary }}</span>
   <time class="text-sm antialiased opacity-60"
     >{{ .Date | time.Format ":date_medium" }}</time
   >
   <a class="absolute inset-0 text-[0]" href="{{ .Permalink }}">{{ .Title }}</a>
+  <!-- Post Tags -->
+  {{ if .Params.tags }}
+  <span class="mt-12 flex flex-wrap">
+    {{ range .Params.tags }} {{ $href := print (absURL "tags/") (urlize .) }}
+    <a data-pagefind-filter="tag"
+      class="mb-1.5 mr-1.5 rounded-lg bg-black/[3%] px-5 py-1.5 no-underline dark:bg-white/[8%]"
+      href="{{ $href }}"
+      >{{ . }}</a
+    >
+    {{ end }}
+  </span>
+  {{ end }}
 </section>
 {{ end }}
 

@@ -1,13 +1,13 @@
 {{ define "main" }}
 
-<article>
+<article data-pagefind-body>
   <header class="mb-16">
     <h1 class="!my-0 pb-2.5">{{ .Title }}</h1>
 
     {{ if ne .Type "page" }}
     <div class="text-sm antialiased opacity-60">
       {{ if .Date }}
-      <time>{{ .Date | time.Format ":date_medium" }}</time>
+      <time data-pagefind-meta="date">{{ .Date | time.Format ":date_medium" }}</time>
       {{ end }}<!---->
       {{ $single_author := or .Params.Author site.Author.name }}
       <!---->
