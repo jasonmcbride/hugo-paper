@@ -1,3 +1,3 @@
-module github.com/nanxiaobei/hugo-paper
+module github.com/jasonmcbride/hugo-paper
 
 go 1.20
